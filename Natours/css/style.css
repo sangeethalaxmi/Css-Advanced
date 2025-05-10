@@ -1,0 +1,185 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* global style */
+*,
+*::after *::before {
+  margin: 0;
+  padding: 0;
+  /* better practice to do it */
+  box-sizing: inherit;
+}
+/* html{
+  font-size: 10px;
+} */
+
+body {
+  font-family: "Lato", "safari";
+  font-size: 1rem;
+  line-height: 1.7;
+  color: lightgray;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: gray;
+  font-size: 0.75rem;
+  display: inline-block;
+  transition: all 0.2s;
+  position: relative;
+}
+.header {
+  background-image: linear-gradient(
+      to right,
+      rgb(40, 180, 133, 0.8),
+      rgb(85, 197, 122, 0.8)
+    ),
+    url(../img/hero.jpg);
+  height: 95vh;
+  background-position: top;
+  background-size: cover;
+  /* used to create shape with poloygon direction */
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  position: relative;
+}
+
+.header__logo-box {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+}
+.header__logo {
+  height: 35px;
+}
+.heading-primary {
+  color: white;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* font-weight: 500; */
+}
+
+.heading-primary--main {
+  letter-spacing: 2rem;
+  display: block;
+  font-weight: 400;
+  animation-name: moveInLeft;
+  /* duritiaon is slowness of time that animation should happen if 5 s it iwll happen in 5sec duration */
+  animation-duration: 1s;
+  /* before starting animation delay for 1 sec */
+  animation-delay: 1s;
+  /* no of times the animation should happen */
+  animation-iteration-count: 1;
+  /* how the animation should perform either start slow end fast or vice versa */
+  animation-timing-function: ease-in;
+}
+.heading-primary--sub {
+  letter-spacing: 0.7rem;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  animation: moveInRight 1s ease-in 1s;
+}
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* animation */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /* move from left */
+    transform: translateX(-100px);
+  }
+  80% {
+    /* move slightly to right the in 100% move to original again */
+    transform: translate(10px);
+  }
+  100% {
+    opacity: 1;
+    /* move to original position */
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /* move from right */
+    transform: translateX(100px);
+  }
+  80% {
+    /* move slightly to right the in 100% move to original again */
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    /* move to original position */
+    transform: translateX(0);
+  }
+}
+.btn:hover {
+  transform: translateY(-3px);
+  /* box shaows x axis y axis shadow opacity or blur shadow color */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+}
+.btn--white {
+  background: #fff;
+  color: black;
+  padding: 0.9rem 2rem;
+  border-radius: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* create after pesudo element for button */
+.btn::after {
+  content: "";
+  display: inherit;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.4s;
+}
+.btn--white::after {
+  background: white;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.5);
+  opacity: 0;
+}
+
+/* moveTotop */
+@keyframes moveToTop {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.btn--animated {
+  animation: moveToTop 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
